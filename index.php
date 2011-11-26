@@ -24,7 +24,11 @@ and open the template in the editor.
         <?php
         
         ?>
-  Hallo world      
+  Hallo world  
+  
+  fdsfjdslkjsddf
+  sdlfjsdlf
+  sdfljsdf
         
         
     </body>
