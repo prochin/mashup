@@ -10,25 +10,16 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <form method="get" action="#">
-            <input type="text" id="obchodni_firma" name="obchodni_firma" value="http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_std.cgi?obchodni_firma=&xml=1"></input>
-            <input type="button" id="vyhledat" value="vyhledat"></input></br>
+        ČPP - 63998530
+        
+        <form method="get" action="vystup.php">
+            <input type="text" id="ico" name="ico" value="63998530"></input>
             
             <input type="submit" id="odelat" value="odeslat"></input>
             
         </form>
-        <a href="http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_std.cgi?obchodni_firma=<?php echo $_GET['obchodni_firma']; ?>&xml=1">
-        http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_std.cgi?obchodni_firma=<?php echo $_GET['obchodni_firma']; ?>&xml=1
-        </a>
-  
-        <?php
+       
         
-        ?>
-  Hallo world  
-  
-  fdsfjdslkjsddf
-  sdlfjsdlf
-  sdfljsdf
         
         
     </body>
