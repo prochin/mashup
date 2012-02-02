@@ -36,7 +36,7 @@ if ($xml) {
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ARESmap</title>
 
-        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=ABQIAAAAHFzujA2I4xooEsgQ9iEnuhRdTeJxBxGihgJ2djZGDKppYwBFeRStIADX3OxbcxYNwTmOdcZuxkdgww&sensor=true"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?ABQIAAAAHFzujA2I4xooEsgQ9iEnuhSzmpRnLKDgEjybe_btMrhN9KbcfRT_xBiBjTcjZBXg1ur9ZeUFKfnyUQ&sensor=true"></script>
         <script type="text/javascript" src="js/maps.js"></script>
         <link rel="stylesheet" href="css/frontend.css">
     </head>
