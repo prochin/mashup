@@ -1,13 +1,13 @@
 <?php
 
-
 // nactu udaje dle ICO z ARESu
 // pres API naleznu LatLng 
 // zobrazim je na maps.google.com
 
 
 define('ARES',"http://wwwinfo.mfcr.cz/cgi-bin/ares/darv_bas.cgi?ico=");
-if(!isset($_REQUEST['ico'])) { $ico=63998530; } else { $ico = intval($_REQUEST['ico']); } ;
+if($_GET['ico'] == "zadejte+IČO") {echo "aaa"; break; }
+if(!isset($_REQUEST['ico'])) { $ico=26479800; } else { $ico = intval($_REQUEST['ico']); } ;
 
 $file = @file_get_contents(ARES.$ico);
 if ($file) $xml = @simplexml_load_string($file);
@@ -25,7 +25,7 @@ if ($xml) {
   $a['psc']	= strval($el->AA->PSC);
   $a['stav'] 	= 'ok';
  } else
-  $a['stav'] 	= 'IČ firmy nebylo nalezeno';
+  $a['stav'] 	= 'IČO firmy nebylo nalezeno';
 } else
  $a['stav'] 	= 'Databáze ARES není dostupná';
 
@@ -34,78 +34,70 @@ if ($xml) {
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title></title>
+        <title>ARESmap</title>
 
-<script type="text/javascript"
-    src="http://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&sensor=true">
-</script>
-
-<script type="text/javascript">
-var geocoder;
-  var map;
-  function initialize() {
-    geocoder = new google.maps.Geocoder();
-    var latlng = new google.maps.LatLng(-34.397, 150.644);
-    var myOptions = {
-      zoom: 15,
-      center: latlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-    
-    
-     //var address = document.getElementById("adresa").value;
-    //alert(address);
-    var address = document.getElementById("address").value;
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map,
-            position: results[0].geometry.location
-        });
-      
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-  }
-
-  function codeAddress() {
-   
-  }
-
-</script>
-
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=ABQIAAAAHFzujA2I4xooEsgQ9iEnuhSzmpRnLKDgEjybe_btMrhN9KbcfRT_xBiBjTcjZBXg1ur9ZeUFKfnyUQ&sensor=true"></script>
+        <script type="text/javascript" src="js/maps.js"></script>
+        <link rel="stylesheet" href="css/frontend.css">
     </head>
    
 <body onload="initialize();">
-     
+    <div id="top">
+	
+		<img src="images/img_title.png">
+	</div>
     
-    
-    ČPP - 63998530
-    KOOP - 47116617<br /><br />
-    
-    <strong><?php echo $a['firma']; ?></strong><br />
-    IČO: <?php echo $a['ico']; ?><br />
-    DIČ: <?php echo $a['dic']; ?><br />
-    Adresa: <?php echo $a['ulice']; ?>, <?php echo $a['psc']; ?> <?php echo $a['mesto']; ?></br>
-    
-    <?php echo $a['stav']; ?>
-        <form method="get" action="index.php">
-            IČO: <input type="text" id="ico" name="ico" value="63998530"></input>
-            
-            <input type="submit" id="odelat" value="odeslat"></input>
-            
-        </form>
-       
-  <div id="map_canvas" style="width: 320px; height: 480px;"></div>
-  <div>
-      <input id="address" type="textbox" value="<?php echo $a['ulice'] . ", " . $a['mesto']; ?>" style="visibility: hidden;">
-    
-  </div>      
-        
-        
+   <div id="obsah">
+		<div id="left_box" class="podBox">
+                <div id="infoSubjekt" class="small">
+				<input id="address" type="textbox" value="<?php echo $a['ulice'] . ", " . $a['mesto']; ?>" style="display: none;">
+				<form method="get" action="index.php">
+						IČO: <input type="text" id="ico" name="ico" value="zadejte IČO" onFocus="if(this.value==this.defaultValue)this.value=''"></input>
+						<input type="submit" id="odelat" value="" class='btn_sipka'></input>
+				 </form>   
+				 <br />
+				<br />
+
+				<?php 
+				 if($a['stav'] == "ok") {
+					 ?>
+
+					  <table border="1">
+					  <tr>
+						<td colspan="2"><strong><span class="vseVelka"><?php echo $a['firma']; ?></span></strong><br /></td>
+					  </tr>
+					  <tr>
+						<td class="title">IČO:</td>
+						<td><?php echo $a['ico']; ?></td>
+					  </tr>
+					  <tr>
+						<td class="title">DIČ:</td>
+						<td><?php echo $a['dic']; ?></td>
+					  </tr>
+					  <tr>
+						<td class="title">Adresa</td>
+						<td><?php echo $a['ulice']; ?>, <?php echo $a['psc']; ?> <?php echo $a['mesto']; ?></td>
+					  </tr>
+					</table>
+                </div>
+                </div>
+					
+				<div id="box1" class="podBox">
+                     <div id="map_canvas" style="width: 300px; height: 300px; "></div>
+                </div>
+                
+        <?php
+     } else {
+         ?>
+		            <span class="dulezite"><?php echo $a['stav']; ?></span>
+				</div>
+			</div>
+            <?php
+     }
+     ?>   
+	 
+      </div>
+	  <div id="footer" class="verySmall">2011 - Pavel Procházka | support@prochin.cz </div>
     </body>
 </html>
  
