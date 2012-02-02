@@ -1,0 +1,28 @@
+/* typography.css */
+
+body {
+	font-family:"Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+
+
+h1 {font-size:1.3em;}
+h2 {font-size:1.2em;}
+h3 {font-size:1.1em;}
+h4 {font-size:1em;}
+h5 {font-size:0.9em;}
+h6 {font-size:0.8em;}
+
+
+.vseVelka { text-transform:uppercase; }
+.small { font-size:0.8em}
+.verySmall { font-size:0.7em}
+
+.tucna { font-weight:bold; }
+.kurziva {font-style:italic}
+
+
+/* odkazy */
+a { color:#666666; }
+a:link { color:#666666; }
+a:visited { color:#666666; }
+a:hover { color:#000000;}
